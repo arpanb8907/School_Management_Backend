@@ -1,1 +1,4 @@
 /node_modules
+
+# .env file (contains sensitive data)
+.env
