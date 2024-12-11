@@ -10,10 +10,12 @@ import  dotenv from 'dotenv';
 dotenv.config();
 
 const Corsoptions = {
-    origin : 'http://localhost:3000',
+    origin : ['http://localhost:3000', 'https://school-management-frontend-iopu.onrender.com'],
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
 };
 
-const port = "https://school-management-backend-2k5j.onrender.com"
+const port = process.env.PORT || 5000;
 const app = express();
 app.use(cors(Corsoptions))
 app.use(express.json());
