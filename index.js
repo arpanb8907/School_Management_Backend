@@ -10,13 +10,15 @@ import  dotenv from 'dotenv';
 dotenv.config();
 
 const Corsoptions = {
-    origin : ["*"],
+    origin : ["https://school-management-frontend-iopu.onrender.com"],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
 };
 
 const port = process.env.PORT || 5000;
 const app = express();
+app.options('*', cors(Corsoptions)); // Preflight requests handler
+
 app.use(cors(Corsoptions))
 app.use(express.json());
 
