@@ -10,7 +10,7 @@ import  dotenv from 'dotenv';
 dotenv.config();
 
 const Corsoptions = {
-    origin : ['http://localhost:3000', 'https://school-management-frontend-iopu.onrender.com'],
+    origin : ['http://localhost:3000', 'https://school-management-frontend-iopu.onrender.com',"school-management-frontend-iopu.onrender.com"],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
 };
