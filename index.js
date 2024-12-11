@@ -2,7 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose';
 // import sampleRoutes from './routes/sampleRoutes.js'; 
-import userRoutes from "./routes/userRoutes.js"
+import router from "./routes/userRoutes.js"
 import  dotenv from 'dotenv';
 
 // mongodb+srv://arpanbhowmick1312:a5kXatFBSoNsd4DF@cluster0.m97in.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
@@ -27,7 +27,7 @@ mongoose.connect('mongodb+srv://arpanbhowmick1312:a5kXatFBSoNsd4DF@cluster0.m97i
   
   // Use routes for user registration, login, and fetching users
 // app.use('/api/users', userRoutes);
-app.use('/api', userRoutes);
+app.use('/api', router);
 
 
 
