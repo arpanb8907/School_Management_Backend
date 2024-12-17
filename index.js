@@ -17,7 +17,7 @@ const Corsoptions = {
 
 const port = process.env.PORT || 5000;
 const app = express();
-app.options('*', cors(Corsoptions)); // Preflight requests handler
+//app.options('*', cors(Corsoptions)); // Preflight requests handler
 
 app.use(cors(Corsoptions))
 app.use(express.json());
