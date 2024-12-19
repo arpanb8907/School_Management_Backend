@@ -1,7 +1,11 @@
 import bcrypt from 'bcryptjs';
-import student from "../models/student.js";
+//import student from "../models/student.js";
+
 import  jwt from 'jsonwebtoken';
 import admin from '../models/admin.js';
+import Homework from '../models/homework.js';
+import student from '../models/student.js';
+
 
 export const registeruser = async(req,res,role)=>{
 
@@ -85,3 +89,59 @@ export const loginuser = async(req,res,role)=>{
 
 }
 
+export const fetch_studentdetails = async (req,res)=>{
+
+    try {
+        const students = await student.find()
+      
+
+      const studentdata = students.map((e)=>({
+
+        id: e._id,
+        name : e.name,
+        
+      }));
+      
+      res.status(200).json(studentdata)
+
+    } catch (error) {
+        console.error("Error fetching details",error);
+        res.status(500).json({message:'Internal server error'})
+        
+    }
+}
+
+
+export const sethomework = async(req,res)=>{
+
+    const {selectedStudent,subject,submissionDate,status} = req.body;
+
+    try {
+
+        const exist_student = await student.findById(selectedStudent)
+
+        if(!exist_student){
+            return res.status(404).json({message:"Student not found"})
+        }
+
+
+        // create homework
+        const home_work = new Homework({
+            student : selectedStudent,
+            subject,
+            submissionDate,
+            status
+        });
+    
+        await home_work.save();
+
+        // success response
+        res.status(201).json({message:`Homework added for ${exist_student.name}`})
+    } catch (error) {
+        console.error("error adding hoework",error);
+        
+        res.status(500).json({message:"Internal server error"})
+    }
+
+
+}

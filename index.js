@@ -2,7 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose';
 // import sampleRoutes from './routes/sampleRoutes.js'; 
-import router from "./routes/userroutes.js"
+import router from "./routes/userRoutes.js"
 import  dotenv from 'dotenv';
 
 // mongodb+srv://arpanbhowmick1312:a5kXatFBSoNsd4DF@cluster0.m97in.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
@@ -10,7 +10,7 @@ import  dotenv from 'dotenv';
 dotenv.config();
 
 const Corsoptions = {
-    origin : ["https://school-management-frontend-iopu.onrender.com"],
+    origin : ["https://school-management-frontend-iopu.onrender.com","http://localhost:3000"],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
 };

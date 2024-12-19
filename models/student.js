@@ -9,7 +9,13 @@ const userSchema = mongoose.Schema(
     password: { type: String, required: true },
     contact: { type: String, required: true },
     address: { type: String, required: true },
-    role : {type : String, default : 'student'}
+    role : {type : String, default : 'student'},
+    homework: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Homework',
+      },
+    ],
   },
   {
     timestamps: true,  // Automatically adds `createdAt` and `updatedAt` fields
