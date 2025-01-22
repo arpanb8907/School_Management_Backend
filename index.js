@@ -5,6 +5,9 @@ import mongoose from 'mongoose';
 import router from './routes/account.js';
 import  dotenv from 'dotenv';
 
+import feeRoutes from './routes/feeRoutes.js';
+import paymentRoutes from './routes/paymentRoutes.js';
+
 // mongodb+srv://arpanbhowmick1312:a5kXatFBSoNsd4DF@cluster0.m97in.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
 
 dotenv.config();
@@ -15,14 +18,14 @@ const Corsoptions = {
   credentials: true,
 };
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8000;
 const app = express();
 //app.options('*', cors(Corsoptions)); // Preflight requests handler
 
 app.use(cors(Corsoptions))
 app.use(express.json());
 
-mongoose.connect('mongodb+srv://arpanbhowmick1312:a5kXatFBSoNsd4DF@cluster0.m97in.mongodb.net/?retryWrites=true&w=majority', {
+mongoose.connect(process.env.MONGODB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -31,6 +34,8 @@ mongoose.connect('mongodb+srv://arpanbhowmick1312:a5kXatFBSoNsd4DF@cluster0.m97i
   
   // Use routes for user registration, login, and fetching users
 // app.use('/api/users', userRoutes);
+app.use('/api/fees', feeRoutes);
+app.use('/api/payments', paymentRoutes);
 app.use('/api', router);
 
 
