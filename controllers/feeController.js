@@ -22,7 +22,11 @@ export const getFees = async (req, res) => {
 
 export const getStudentFeeDetails = async (req, res) => {
     try {
-      const studentId = req.studentId; // Extracted from token via middleware
+      let { studentId } = req.query;
+
+      if (!studentId){
+        studentId = req.studentId; // Extracted from token via middleware
+      }
   
       // Attempt to fetch the student's fee details
       let studentFee = await StudentFee.findOne({ studentId });
