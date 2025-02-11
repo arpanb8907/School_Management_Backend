@@ -7,6 +7,7 @@ import Homework from '../models/homework.js';
 import student from '../models/student.js';
 
 
+
 export const registeruser = async(req,res,role)=>{
 
     const { name,fname, email, password, contact, address } = req.body;
@@ -144,4 +145,33 @@ export const sethomework = async(req,res)=>{
     }
 
 
+}
+
+export const get_userslist = async(req,res)=>{
+
+    try {
+        
+        const students = await student.find();
+        const admins = await admin.find();
+
+        const studentlist = students.map((e)=>({
+            id : e._id,
+            name : e.name,
+            role : e.role
+        }));
+
+        const adminlist = admins.map((e)=>({
+            id : e._id,
+            name : e.name,
+            role : e.role
+        }));
+
+        const userlist = [...studentlist,...adminlist]
+
+        res.status(200).json(userlist);
+
+    } catch (error) {
+        console.error('Error while fetching details')
+        res.status(500).json({message:'Internal server error'})
+    }
 }
