@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.post('/create', createFee);
 router.get('/studentFee', protect, getStudentFeeDetails);
+router.get('/admin/studentFee', getStudentFeeDetails);
 router.get('/', getFees);
 
 export default router;

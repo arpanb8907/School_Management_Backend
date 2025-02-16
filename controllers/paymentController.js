@@ -4,7 +4,11 @@ import StudentFee from '../models/StudentFee.js';
 export const makeOfflinePayment = async (req, res) => {
 	try {
 		const { selectedMonths, offlineDetails } = req.body;
-		const studentId = req.studentId;
+		let { studentId } = req.query;
+
+		if (!studentId){
+			studentId = req.studentId; // Extracted from token via middleware
+		}
 	
 		if (!selectedMonths || selectedMonths.length === 0) {
 		  return res.status(400).json({ error: "No months selected for payment." });
