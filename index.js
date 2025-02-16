@@ -23,7 +23,6 @@ const Corsoptions = {
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
 };
-
 const port = process.env.PORT || 8000;
 const app = express();
 const server = createServer(app); // create an http server manually as we are going to use socket.io as
