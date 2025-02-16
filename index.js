@@ -60,6 +60,9 @@ app.use("/api/payments", paymentRoutes);
 
 
 // start the server
+app.get('/', (req, res) => {
+  res.send('Backend is running successfully!');
+});
 
 server.listen(port, () => {
   console.log(`Server is running on ${port}`);
